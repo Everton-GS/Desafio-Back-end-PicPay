@@ -1,8 +1,10 @@
 package com.picpayTeste.Backend.entity;
 
+import java.math.BigDecimal;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class DadosUsuario {
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
@@ -36,5 +38,5 @@ public abstract class DadosUsuario {
 
     @NotBlank
     @Column(name = "carteira")
-    private double carteira;
+    private BigDecimal carteira;
 }

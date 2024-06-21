@@ -18,8 +18,6 @@ import lombok.Setter;
 @Table(name = "db_lojista")
 public class Lojista extends DadosUsuario{
     
-
-
     @CNPJ
     @NotBlank
     @Column(name = "cnpj")
