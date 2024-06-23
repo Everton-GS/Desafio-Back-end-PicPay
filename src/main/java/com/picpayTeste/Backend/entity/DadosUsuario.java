@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,19 +26,20 @@ public abstract class DadosUsuario {
     @Column(name = "id")
     private long id;
     
-    @NotBlank
+    @NotBlank(message="nome em branco")
     @Column(name = "nome")
     private String nome;
 
-    @NotBlank
+    @NotBlank(message = "e-mail em branco")
     @Column(name = "email")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "senha em branco")
     @Column(name = "senha")
     private String senha;
 
-    @NotBlank
+    @NotNull(message = "carteira em branco")
+    @PositiveOrZero
     @Column(name = "carteira")
     private BigDecimal carteira;
 }

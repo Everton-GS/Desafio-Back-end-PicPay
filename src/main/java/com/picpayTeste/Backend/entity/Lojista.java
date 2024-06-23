@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,12 +16,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "db_lojista")
+@Table(name = "db_lojista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnpj"}))
 public class Lojista extends DadosUsuario{
     
     @CNPJ
     @NotBlank
-    @Column(name = "cnpj")
+    @Column(name = "cnpj",unique = true)
     private String cnpj;
 
+    
 }

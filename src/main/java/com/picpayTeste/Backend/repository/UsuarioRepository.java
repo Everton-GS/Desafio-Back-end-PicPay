@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.picpayTeste.Backend.entity.Usuario;
 
-public interface UsuarioService extends JpaRepository<Usuario,Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     
 }
