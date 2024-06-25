@@ -1,13 +1,13 @@
 package com.picpayTeste.Backend.entity;
 
-public enum TipoEnum {
+public enum TipoUsuarioEnum {
     Lojista("lojista"),
     Usuario("usuario");
 
     private String tipo;
 
 
-    private TipoEnum(String tipo){
+    private TipoUsuarioEnum(String tipo){
         this.tipo=tipo;
     }
  

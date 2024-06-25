@@ -16,6 +16,7 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
+    
     public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario){
             try {
                 usuarioService.registrar(usuario);
