@@ -3,6 +3,7 @@ package com.picpayTeste.Backend.entity;
 import org.hibernate.validator.constraints.br.CPF;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
@@ -24,4 +25,8 @@ public class Usuario extends DadosUsuario {
     @NotBlank
     @Column(name = "cpf",unique = true)
     private String cpf;
+
+    @Column(name = "tipo_usuario")
+    @Enumerated
+    private TipoUsuarioEnum tipoEnum;
 }
