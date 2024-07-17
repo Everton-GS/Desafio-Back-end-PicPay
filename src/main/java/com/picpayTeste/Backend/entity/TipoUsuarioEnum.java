@@ -1,8 +1,8 @@
 package com.picpayTeste.Backend.entity;
 
 public enum TipoUsuarioEnum {
-    Lojista("lojista"),
-    Usuario("usuario");
+    LOJISTA("ROLE_LOJISTA"),
+    USUARIO("ROLE_USUARIO");
 
     private String tipo;
 

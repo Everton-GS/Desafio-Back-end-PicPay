@@ -33,6 +33,7 @@ public class AcessoAplicacao {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @SuppressWarnings("null")
     @PostMapping("/acessar")
     public ResponseEntity<?> acessarAplicacao(@RequestBody AcessoAplicacaoDTO acessoAplicacaoDTO){
         Authentication auth;
@@ -47,14 +48,15 @@ public class AcessoAplicacao {
             token=tokenService.gerarTokenLojista((Lojista)auth.getPrincipal());
             return ResponseEntity.ok(token);
 
-          }else if(acessoAplicacaoDTO.getLogin().length()==14){
-            userDetails = usuarioRepository.findByCpf(acessoAplicacaoDTO.getLogin());
-            if(userDetails!=null && passwordEncoder.matches(acessoAplicacaoDTO.getSenha(), userDetails.getPassword()));
-            auth = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            token=tokenService.gerarTokenUsuario((Usuario)auth.getPrincipal());
-            return ResponseEntity.ok(token);
           }
+        }
+        if(acessoAplicacaoDTO.getLogin().length()==14){
+          userDetails = usuarioRepository.findByCpf(acessoAplicacaoDTO.getLogin());
+          if(userDetails!=null && passwordEncoder.matches(acessoAplicacaoDTO.getSenha(), userDetails.getPassword()));
+          auth = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+          SecurityContextHolder.getContext().setAuthentication(auth);
+          token=tokenService.gerarTokenUsuario((Usuario)auth.getPrincipal());
+          return ResponseEntity.ok(token);
         }
           return ResponseEntity.badRequest().build();
     }

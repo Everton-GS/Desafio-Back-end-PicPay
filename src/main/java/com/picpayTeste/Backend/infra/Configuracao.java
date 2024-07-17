@@ -20,8 +20,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 public class Configuracao {
     
-     @Autowired
-     FiltroSeguranca filtroSeguranca;
+    @Autowired
+    FiltroSeguranca filtroSeguranca;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
@@ -29,6 +29,8 @@ public class Configuracao {
         .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize->authorize
         .requestMatchers(HttpMethod.POST,"/lojista/registrar").permitAll()
+        .requestMatchers(HttpMethod.POST,"/usuario/registrar").permitAll()
+        .requestMatchers(HttpMethod.POST,"/usuario/transferir").hasRole("USUARIO")
         .requestMatchers(HttpMethod.POST,"/picpay/acessar").permitAll()
         .anyRequest().authenticated())
         .addFilterBefore(filtroSeguranca,UsernamePasswordAuthenticationFilter.class)
@@ -36,7 +38,7 @@ public class Configuracao {
         .formLogin(Customizer.withDefaults());
         return http.build();
     }
-     @Bean
+    @Bean
     public BCryptPasswordEncoder senhPasswordEncoder(){
         return new BCryptPasswordEncoder();      
     }

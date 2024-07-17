@@ -22,7 +22,9 @@ public class TokenService {
     }
     public String gerarTokenUsuario(Usuario usuario) {
         Algorithm algorithm = Algorithm.HMAC512(secret);
-        return JWT.create().withIssuer("picpay").withSubject(usuario.getCpf()).withExpiresAt(tempoToke())
+        return JWT.create().withIssuer("picpay")
+        .withSubject(usuario.getCpf())
+        .withExpiresAt(tempoToke())
                 .sign(algorithm);
 }
 

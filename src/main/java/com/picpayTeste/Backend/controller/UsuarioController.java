@@ -42,7 +42,7 @@ public class UsuarioController {
     public ResponseEntity<String> transferenciaValor(@RequestBody TransferenciaValor transferenciaValor ){
         
         Usuario usuario = (Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        System.out.println(usuario.getTipoEnum());
         if(transferenciaValor.getDestinatario().length()==14){
             Usuario destinatario = usuarioRepository.findByCpf(transferenciaValor.getDestinatario());
             if(destinatario!=null){ 
@@ -54,6 +54,7 @@ public class UsuarioController {
         }else{
             return ResponseEntity.badRequest().body("Destinatário não encontrado");
         }
+        
         return ResponseEntity.ok("Transação realizada com sucesso");
      }
 }

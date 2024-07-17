@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 
 @RestControllerAdvice
 public class ExceptionValidator {
@@ -49,5 +50,11 @@ public class ExceptionValidator {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<String> handlerInternoServidor(Exception ex){
         return ResponseEntity.internalServerError().body("Erro interno servidor");
+    }
+
+    @ExceptionHandler(JWTVerificationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<String> handlerValidatorJwt(JWTVerificationException JWTVerificationException){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
     }
 }
