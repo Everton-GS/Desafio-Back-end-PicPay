@@ -39,6 +39,7 @@ public abstract class DadosUsuario {
     private String senha;
 
     @NotNull(message = "carteira em branco")
+    
     @PositiveOrZero
     @Column(name = "carteira")
     private BigDecimal carteira;

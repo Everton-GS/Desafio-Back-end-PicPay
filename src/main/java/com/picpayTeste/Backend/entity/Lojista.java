@@ -1,7 +1,7 @@
 package com.picpayTeste.Backend.entity;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,17 +32,19 @@ public class Lojista extends DadosUsuario implements UserDetails{
     private String cnpj;
 
     @Column(name = "tipo_usuario")
+    @NotNull(message = "O campo não pode estar vazio")
     @Enumerated
     private TipoUsuarioEnum tipoEnum;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(tipoEnum.getTipo()));
+    // Supondo que `funcionario` seja um objeto com a propriedade `cargo` que retorna um tipo que implementa `funcaoRole()`
+    return List.of(new SimpleGrantedAuthority(tipoEnum.getTipo()));
     }
-
+    
     @Override
     public String getPassword() {
-        return getPassword();
+        return getSenha();
     }
 
     @Override
@@ -49,6 +52,25 @@ public class Lojista extends DadosUsuario implements UserDetails{
        return getCnpj();
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
     
 }
