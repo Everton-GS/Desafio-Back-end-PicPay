@@ -23,7 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "db_lojista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnpj"}))
+@Table(name = "db_lojista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnpj,email"}))
 public class Lojista extends DadosUsuario implements UserDetails{
     
     @CNPJ

@@ -24,7 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "db_usuario",uniqueConstraints = @UniqueConstraint(columnNames={"cpf"}))
+@Table(name = "db_usuario",uniqueConstraints = @UniqueConstraint(columnNames={"cpf,email"}))
 public class Usuario extends DadosUsuario implements UserDetails {
     
 
