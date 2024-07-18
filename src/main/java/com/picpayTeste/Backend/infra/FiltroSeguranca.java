@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.picpayTeste.Backend.entity.Usuario;
 import com.picpayTeste.Backend.repository.LojistaRepository;
 import com.picpayTeste.Backend.repository.UsuarioRepository;
 import io.micrometer.common.lang.NonNull;
