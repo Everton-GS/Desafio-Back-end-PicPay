@@ -38,7 +38,6 @@ public class Lojista extends DadosUsuario implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    // Supondo que `funcionario` seja um objeto com a propriedade `cargo` que retorna um tipo que implementa `funcaoRole()`
     return List.of(new SimpleGrantedAuthority(tipoEnum.getTipo()));
     }
     
